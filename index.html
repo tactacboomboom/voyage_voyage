@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notre été 2026 ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+/* ───────── TOKENS (preset playful) ───────── */
+:root{
+  --indigo:#1a1040; --indigo-2:#2a1b5e; --sunset:#ff6b35; --gold:#ffc857;
+  --cream:#fff6ea; --teal:#2ec4b6; --pink:#ff5d8f;
+  --r:20px; --r-lg:28px;
+  --shadow:0 12px 40px rgba(10,5,40,.45);
+  --t-hero:clamp(2.6rem,9vw,5rem);
+  --t-h2:clamp(1.6rem,6vw,2.6rem);
+  --t-big:clamp(1.1rem,4.2vw,1.5rem);
+  --t-base:clamp(.95rem,3.6vw,1.1rem);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-snap-type:y mandatory;scroll-behavior:smooth}
+body{font-family:'Poppins',system-ui,sans-serif;color:var(--cream);background:var(--indigo);overflow-x:hidden}
+section{min-height:100svh;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5vh 6vw;position:relative;text-align:center}
+h2{font-size:var(--t-h2);font-weight:900;line-height:1.1;margin-bottom:.6em}
+.hint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);font-size:1.6rem;animation:bob 1.6s infinite;opacity:.7}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,10px)}}
+
+/* ───────── 0 · HERO ───────── */
+#hero{background:linear-gradient(170deg,#0d0826 0%,#1a1040 35%,#4a2070 70%,#ff6b35 130%)}
+#hero .stars{position:absolute;inset:0;background-image:radial-gradient(2px 2px at 20% 30%,#fff,transparent),radial-gradient(2px 2px at 70% 20%,#fff,transparent),radial-gradient(1.5px 1.5px at 40% 60%,#fff,transparent),radial-gradient(2px 2px at 85% 45%,#fff,transparent),radial-gradient(1.5px 1.5px at 10% 70%,#fff,transparent);opacity:.7}
+#hero h1{font-size:var(--t-hero);font-weight:900;line-height:1.05;z-index:1}
+#hero h1 em{font-style:normal;color:var(--gold)}
+.bignums{display:flex;gap:5vw;margin-top:5vh;z-index:1}
+.bignums div{display:flex;flex-direction:column}
+.bignums b{font-size:clamp(2.2rem,8vw,4rem);font-weight:900;color:var(--gold)}
+.bignums span{font-size:var(--t-base);opacity:.85}
+#hero .sub{margin-top:4vh;font-size:var(--t-big);font-weight:600;z-index:1}
+#hero .sub b{color:var(--pink)}
+
+/* ───────── 1 · TERRAIN ───────── */
+#terrain{background:linear-gradient(180deg,#1a1040,#241452)}
+.nope{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:560px;margin-bottom:5vh}
+.nope span{background:rgba(255,255,255,.07);border-radius:999px;padding:9px 16px;font-size:var(--t-base);text-decoration:line-through;opacity:.5}
+.corridor{width:min(92vw,620px);background:linear-gradient(90deg,#2ec4b6 0%,#ffc857 50%,#ff6b35 100%);border-radius:var(--r-lg);padding:4px;box-shadow:var(--shadow)}
+.corridor-in{background:var(--indigo-2);border-radius:calc(var(--r-lg) - 4px);padding:26px 14px;display:flex;align-items:center;justify-content:space-between;gap:4px}
+.stop{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:var(--t-base);font-weight:600}
+.stop i{font-style:normal;font-size:clamp(1.8rem,7vw,2.6rem)}
+.dots{flex:1;border-top:3px dotted rgba(255,255,255,.4);transform:translateY(-12px)}
+.season{margin-top:4vh;font-size:var(--t-big);font-weight:600}
+.season b{color:var(--teal)}
+
+/* ───────── 2 · LES 4 ÉTÉS ───────── */
+#etes{background:linear-gradient(180deg,#241452,#1a1040);padding-top:8vh;padding-bottom:10vh}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;width:min(92vw,640px)}
+.card{perspective:1200px;cursor:pointer;height:min(46vw,300px)}
+.cardin{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.card.flip .cardin{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--r);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:12px;box-shadow:var(--shadow)}
+.front{background:linear-gradient(160deg,#332066,#241452);border:2px solid rgba(255,255,255,.12)}
+.back{background:linear-gradient(160deg,#241452,#332066);border:2px solid rgba(255,255,255,.12);transform:rotateY(180deg);gap:8px}
+.card .big{font-size:clamp(2.4rem,10vw,3.6rem);line-height:1}
+.card .name{font-weight:800;font-size:var(--t-base)}
+.gauges{display:flex;flex-direction:column;gap:2px;font-size:clamp(.78rem,3vw,.95rem)}
+.gauges span{letter-spacing:1px}
+.back li{list-style:none;font-size:clamp(.8rem,3.1vw,.98rem);font-weight:600}
+.pick{margin-top:6px;border:none;border-radius:999px;padding:9px 18px;font-family:inherit;font-weight:800;font-size:clamp(.8rem,3.2vw,1rem);background:rgba(255,255,255,.14);color:var(--cream);cursor:pointer;min-height:42px}
+.card.star{grid-column:1/-1;height:min(52vw,320px)}
+.card.star .front,.card.star .back{background:linear-gradient(160deg,#5a3a00,#332066 70%);border:3px solid var(--gold)}
+.badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--gold);color:#3a2400;font-weight:900;border-radius:999px;padding:6px 16px;font-size:clamp(.75rem,3vw,.95rem);z-index:2;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.card.chosen .front,.card.chosen .back{outline:4px solid var(--pink)}
+.card.chosen .pick{background:var(--pink);color:#fff}
+#etes .scale{margin-top:4vh;font-size:var(--t-base);font-weight:600;opacity:.85}
+
+/* ───────── 3 · LA QUESTION ───────── */
+#question{background:linear-gradient(180deg,#1a1040,#3d1456)}
+#question .quote{font-size:var(--t-big);opacity:.8;margin-bottom:.4em}
+#question h2 b{color:var(--gold)}
+.chips{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:600px;margin-top:3vh}
+.chip{border:2px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:var(--cream);border-radius:999px;padding:13px 20px;font-family:inherit;font-size:var(--t-base);font-weight:600;cursor:pointer;min-height:52px;transition:all .15s}
+.chip.on{background:var(--gold);border-color:var(--gold);color:#3a2400;transform:scale(1.07)}
+#question .note{margin-top:3.5vh;font-size:var(--t-base);opacity:.7}
+
+/* ───────── 4 · LE DEAL ───────── */
+#deal{background:linear-gradient(180deg,#3d1456,#1a1040)}
+.deals{display:flex;flex-direction:column;gap:14px;width:min(92vw,520px)}
+.deal{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.07);border:2px solid rgba(255,255,255,.14);border-radius:var(--r);padding:16px 18px;cursor:pointer;text-align:left;transition:all .2s;min-height:72px}
+.deal i{font-style:normal;font-size:2rem}
+.deal b{font-size:var(--t-base);display:block}
+.deal small{font-size:clamp(.78rem,3vw,.92rem);opacity:.7}
+.deal .check{margin-left:auto;font-size:1.7rem;opacity:.18}
+.deal.ok{background:rgba(46,196,182,.18);border-color:var(--teal)}
+.deal.ok .check{opacity:1}
+#deal .sub{margin-top:3.5vh;font-size:var(--t-big);font-weight:600}
+#deal .sub b{color:var(--teal)}
+
+/* ───────── 5 · VERDICT ───────── */
+#verdict{background:linear-gradient(170deg,#1a1040 0%,#4a2070 60%,#ff6b35 140%)}
+#recap{display:flex;flex-direction:column;gap:10px;align-items:center;margin:3vh 0;min-height:90px}
+#recap .r1{font-size:clamp(1.4rem,5.5vw,2rem);font-weight:900;color:var(--gold)}
+#recap .r2{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;max-width:520px}
+#recap .r2 span{background:rgba(255,255,255,.14);border-radius:999px;padding:7px 14px;font-size:var(--t-base);font-weight:600}
+#go{border:none;border-radius:999px;background:var(--gold);color:#3a2400;font-family:inherit;font-weight:900;font-size:clamp(1.2rem,5vw,1.7rem);padding:20px 44px;cursor:pointer;box-shadow:0 14px 44px rgba(255,200,87,.4);transition:transform .15s;min-height:64px}
+#go:active{transform:scale(.95)}
+.tiny{position:absolute;bottom:14px;font-size:.72rem;opacity:.45}
+.confetti{position:fixed;top:-40px;font-size:1.6rem;animation:fall 2.6s linear forwards;z-index:99;pointer-events:none}
+.docsbtn{position:fixed;top:14px;right:14px;z-index:50;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:9px 16px;color:var(--cream);text-decoration:none;font-size:.9rem;font-weight:600;opacity:.75}
+.docsbtn:hover{opacity:1}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.2}}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}.card{height:300px}.card.star{grid-column:1/-1;height:280px}.card.star .cardin{max-width:520px;margin:auto}}
+</style>
+</head>
+<body>
+
+<a class="docsbtn" href="docs.html">📚 Les docs</a>
+
+<!-- 0 · HERO -->
+<section id="hero">
+  <div class="stars"></div>
+  <h1>NOTRE<br><em>DERNIER</em><br>GRAND ÉTÉ</h1>
+  <div class="bignums">
+    <div><b>60</b><span>jours</span></div>
+    <div><b>2</b><span>sacs</span></div>
+    <div><b>1</b><span>décision</span></div>
+  </div>
+  <p class="sub">…sauf si tu <b>t'amuses trop</b> 😏</p>
+  <div class="hint">⌄</div>
+</section>
+
+<!-- 1 · TERRAIN -->
+<section id="terrain">
+  <h2>Il nous reste<br>un couloir 🌍</h2>
+  <div class="nope">
+    <span>🌴 Asie du Sud-Est</span><span>🦁 Afriques</span><span>🗽 Amériques</span>
+    <span>🏛️ Europe</span><span>🇩🇿 Algérie (visa ✂️)</span><span>🏄 Océanie</span>
+  </div>
+  <div class="corridor"><div class="corridor-in">
+    <div class="stop"><i>🕌</i>Istanbul</div><div class="dots"></div>
+    <div class="stop"><i>🏔️</i>Les 'Stan</div><div class="dots"></div>
+    <div class="stop"><i>🦅</i>Altaï</div>
+  </div></div>
+  <p class="season">Et en juillet-août… il est <b>en fleurs</b> 🌸</p>
+  <div class="hint">⌄</div>
+</section>
+
+<!-- 2 · LES 4 ÉTÉS -->
+<section id="etes">
+  <h2>Choisis ton été 👇</h2>
+  <div class="grid">
+
+    <div class="card star" id="cardB" onclick="flip(this)">
+      <div class="badge">⭐ NOS 2 RÊVES EN 1</div>
+      <div class="cardin">
+        <div class="face front">
+          <div class="big">🏔️🦅</div>
+          <div class="name">La Route de la Soie + Altaï</div>
+          <div class="gauges">
+            <span>💖 Ton rêve&nbsp; ●●●</span>
+            <span>🔥 Aventure&nbsp; ●●●</span>
+            <span>💸 Budget&nbsp; ●●○</span>
+          </div>
+        </div>
+        <div class="face back">
+          <li>🏔️ Kirghizistan + Kazakhstan</li>
+          <li>🏡 3 sem. dans une guesthouse</li>
+          <li>🐎 Chevaux & yourtes</li>
+          <li>🦅 Final : l'Altaï mongol</li>
+          <button class="pick" onclick="choose(event,'B','🏔️🦅 Route de la Soie + Altaï')">❤️ Mon choix</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="flip(this)">
+      <div class="cardin">
+        <div class="face front">
+          <div class="big">🐎</div>
+          <div class="name">Altaï intégral</div>
+          <div class="gauges"><span>💖 ●●●</span><span>🔥 ●●●</span><span>💸 ●○○</span></div>
+        </div>
+        <div class="face back">
+          <li>🇲🇳 2 mois Mongolie</li>
+          <li>🏇 Naadam en juillet</li>
+          <li>⛺ Familles nomades</li>
+          <button class="pick" onclick="choose(event,'A','🐎 Altaï intégral')">❤️ Mon choix</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="flip(this)">
+      <div class="cardin">
+        <div class="face front">
+          <div class="big">🚲</div>
+          <div class="name">Danube → Istanbul</div>
+          <div class="gauges"><span>💖 ●●○</span><span>🔥 ●●○</span><span>💸 ●●●</span></div>
+        </div>
+        <div class="face back">
+          <li>🛶 2800 km à vélo</li>
+          <li>⛺ Camping libre</li>
+          <li>🕌 Arrivée Bosphore</li>
+          <button class="pick" onclick="choose(event,'C','🚲 Danube → Istanbul')">❤️ Mon choix</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" onclick="flip(this)">
+      <div class="cardin">
+        <div class="face front">
+          <div class="big">⛵</div>
+          <div class="name">Moussaillons</div>
+          <div class="gauges"><span>💖 ●○○</span><span>🔥 ●●○</span><span>💸 ●●●</span></div>
+        </div>
+        <div class="face back">
+          <li>🌊 Équipiers sans diplôme</li>
+          <li>🎲 Zéro garantie</li>
+          <li>🗓️ Plutôt un autre été ?</li>
+          <button class="pick" onclick="choose(event,'D','⛵ Moussaillons')">❤️ Mon choix</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p class="scale">Niveau princesse du couple : 👑 ●●○○○○○○○○ 😎</p>
+  <div class="hint">⌄</div>
+</section>
+
+<!-- 3 · LA QUESTION -->
+<section id="question">
+  <p class="quote">Tu as dit :</p>
+  <h2>« sauf si je<br><b>m'amuse trop</b> »</h2>
+  <p class="quote">OK. C'est quoi, s'amuser ? 👇</p>
+  <div class="chips">
+    <button class="chip" onclick="chip(this)">🐎 Galoper</button>
+    <button class="chip" onclick="chip(this)">🌅 Paysages fous</button>
+    <button class="chip" onclick="chip(this)">🤝 Rencontres</button>
+    <button class="chip" onclick="chip(this)">🏕️ Bivouac</button>
+    <button class="chip" onclick="chip(this)">🍜 Cuisine locale</button>
+    <button class="chip" onclick="chip(this)">📸 Photos de ouf</button>
+    <button class="chip" onclick="chip(this)">🛁 Un peu de confort</button>
+    <button class="chip" onclick="chip(this)">🎉 Imprévu total</button>
+    <button class="chip" onclick="chip(this)">🏡 Vie de guesthouse</button>
+    <button class="chip" onclick="chip(this)">🧘 Lenteur</button>
+  </div>
+  <p class="note">Tape tout ce qui te parle ✨ C'est notre cahier des charges.</p>
+  <div class="hint">⌄</div>
+</section>
+
+<!-- 4 · LE DEAL -->
+<section id="deal">
+  <h2>Le deal 🤝</h2>
+  <div class="deals">
+    <button class="deal" onclick="seal(this)">
+      <i>📤</i><span><b>10 publications en juin</b><small>il prouve AVANT de partir</small></span><span class="check">✅</span>
+    </button>
+    <button class="deal" onclick="seal(this)">
+      <i>⏱️</i><span><b>Max 1h de contenu / jour</b><small>le reste : vacances</small></span><span class="check">✅</span>
+    </button>
+    <button class="deal" onclick="seal(this)">
+      <i>🙅‍♀️</i><span><b>Ton veto photo absolu</b><small>aucune image de toi sans ton OK</small></span><span class="check">✅</span>
+    </button>
+  </div>
+  <p class="sub">Tape pour <b>sceller</b> 🔏</p>
+  <div class="hint">⌄</div>
+</section>
+
+<!-- 5 · VERDICT -->
+<section id="verdict">
+  <h2>Alors ? 🎯</h2>
+  <div id="recap">
+    <div class="r1" id="recap-choice">— choisis ton été plus haut ☝️ —</div>
+    <div class="r2" id="recap-chips"></div>
+  </div>
+  <button id="go" onclick="boom()">ON RÉSERVE 🎟️</button>
+  <p class="tiny">détails & budget pour le chef de projet → <a href="docs.html" style="color:inherit">📚 les docs</a></p>
+</section>
+
+<script>
+const S = JSON.parse(localStorage.getItem('ete2026')||'{}');
+S.chips = S.chips||[]; S.deals = S.deals||0;
+
+function save(){ localStorage.setItem('ete2026', JSON.stringify(S)); }
+
+function flip(card){ card.classList.toggle('flip'); }
+
+function choose(ev, id, label){
+  ev.stopPropagation();
+  document.querySelectorAll('.card').forEach(c=>c.classList.remove('chosen'));
+  ev.target.closest('.card').classList.add('chosen');
+  S.choice = label; save(); recap();
+  mini(ev.target,'💖');
+}
+
+function chip(btn){
+  btn.classList.toggle('on');
+  const t = btn.textContent.trim();
+  S.chips = btn.classList.contains('on') ? [...S.chips.filter(c=>c!==t), t] : S.chips.filter(c=>c!==t);
+  save(); recap();
+}
+
+function seal(d){
+  d.classList.toggle('ok');
+  S.deals = document.querySelectorAll('.deal.ok').length; save();
+}
+
+function recap(){
+  document.getElementById('recap-choice').textContent = S.choice || '— choisis ton été plus haut ☝️ —';
+  document.getElementById('recap-chips').innerHTML = S.chips.map(c=>`<span>${c}</span>`).join('');
+}
+
+function mini(el,e){
+  const s=document.createElement('div'); s.className='confetti'; s.textContent=e;
+  const r=el.getBoundingClientRect(); s.style.left=r.left+'px'; s.style.top=r.top+'px';
+  s.style.position='fixed'; document.body.appendChild(s); setTimeout(()=>s.remove(),2600);
+}
+
+function boom(){
+  const em=['🎉','✨','🏔️','🐎','🦅','💖','🌸','⭐'];
+  for(let i=0;i<40;i++){
+    const s=document.createElement('div'); s.className='confetti';
+    s.textContent=em[Math.floor(Math.random()*em.length)];
+    s.style.left=Math.random()*100+'vw';
+    s.style.animationDelay=(Math.random()*0.8)+'s';
+    s.style.fontSize=(1+Math.random()*1.6)+'rem';
+    document.body.appendChild(s); setTimeout(()=>s.remove(),3600);
+  }
+}
+
+/* restore */
+window.addEventListener('load',()=>{
+  document.querySelectorAll('.chip').forEach(b=>{ if(S.chips.includes(b.textContent.trim())) b.classList.add('on'); });
+  recap();
+});
+</script>
+</body>
+</html>

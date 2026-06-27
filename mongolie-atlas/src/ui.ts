@@ -137,6 +137,16 @@ export function buildHUD(root: HTMLElement, cb: HUDCallbacks): HUD {
   }
   root.appendChild(layers);
 
+  // --- Bouton menu (mobile) : ouvre/ferme le tiroir des couches ---
+  const menuBtn = el("button", "", "☰");
+  menuBtn.id = "menu-toggle";
+  menuBtn.setAttribute("aria-label", "Afficher/masquer les couches");
+  menuBtn.addEventListener("click", () => {
+    const open = layers.classList.toggle("open");
+    menuBtn.textContent = open ? "✕" : "☰";
+  });
+  root.appendChild(menuBtn);
+
   // --- Panneau info ---
   const info = el("div", "panel");
   info.id = "info";
@@ -148,9 +158,9 @@ export function buildHUD(root: HTMLElement, cb: HUDCallbacks): HUD {
   const controls = el("div", "panel");
   controls.id = "controls";
   controls.innerHTML = `
-    <b>Glisser</b> = se déplacer · <b>clic droit</b> = pivoter · <b>molette</b> = zoom · <b>flèches</b> = naviguer.<br>
-    Cliquez (sans glisser) une <b>ville</b>, un <b>sommet</b>, un <b>POI</b> ou une <b>zone ethnique</b>.
-    <div class="btn">↺ Recentrer</div>
+    <div class="hint"><b>Glisser</b> = se déplacer · <b>clic droit</b> = pivoter · <b>molette</b> = zoom · <b>flèches</b> = naviguer.<br>
+    Cliquez (sans glisser) une <b>ville</b>, un <b>sommet</b>, un <b>POI</b> ou une <b>zone ethnique</b>.</div>
+    <div class="btn" title="Recentrer la vue">↺<span class="btn-txt">Recentrer</span></div>
     <div id="credits">Relief : AWS Terrain Tiles (domaine public). Frontières/hydro : Natural Earth.
     Routes &amp; POI : © OpenStreetMap (ODbL). Ethnies : recensement 2020, approximatif. Carte pédagogique.</div>`;
   (controls.querySelector(".btn") as HTMLElement).addEventListener("click", cb.onRecenter);

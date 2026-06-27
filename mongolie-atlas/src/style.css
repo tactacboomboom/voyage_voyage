@@ -95,6 +95,37 @@ canvas{display:block}
   border-radius:50%;animation:sp 1s linear infinite;margin:0 auto 14px}
 @keyframes sp{to{transform:rotate(360deg)}}
 
+/* ---- Bouton menu (mobile) ---- */
+#menu-toggle{display:none;position:fixed;top:12px;left:12px;z-index:120;
+  width:46px;height:46px;border-radius:13px;border:1px solid var(--line);
+  background:var(--panel);backdrop-filter:blur(10px);color:var(--ink);
+  font-size:1.35rem;line-height:1;align-items:center;justify-content:center;
+  cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+
+.btn .btn-txt{margin-left:2px}
+
+/* ============ MOBILE / TACTILE ============ */
 @media(max-width:760px){
-  #layers{width:210px} #info{width:240px} #compass{display:none}
+  #menu-toggle{display:flex}
+  #title{display:none}              /* place gagnée ; remplacé par le bouton menu */
+  #compass{display:none}
+
+  /* le panneau des couches devient un tiroir coulissant, fermé par défaut */
+  #layers{
+    top:0;left:0;bottom:0;height:100dvh;max-height:100dvh;width:82vw;max-width:300px;
+    border-radius:0 16px 16px 0;padding-top:64px;
+    transform:translateX(-104%);transition:transform .25s ease;z-index:110}
+  #layers.open{transform:translateX(0)}
+
+  /* l'encart de contrôles : on masque les indications (inutiles au tactile),
+     on ne garde que « Recentrer » en petit bouton rond flottant */
+  #controls{background:none;backdrop-filter:none;border:none;box-shadow:none;
+    padding:0;right:12px;bottom:12px;max-width:none}
+  #controls .hint, #controls #credits{display:none}
+  #controls .btn{margin:0;width:46px;height:46px;padding:0;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+  #controls .btn .btn-txt{display:none}   /* on ne garde que l'icône ↺ */
+
+  /* fiche d'info en feuille basse, pleine largeur */
+  #info{top:auto;left:12px;right:12px;bottom:70px;width:auto;max-height:48dvh;overflow:auto}
 }

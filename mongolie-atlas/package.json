@@ -1,0 +1,32 @@
+{
+  "name": "mongolie-atlas",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Atlas Nomade — carte 3D interactive et hors-ligne de la Mongolie",
+  "scripts": {
+    "data:terrain": "tsx scripts/prepare-terrain.ts",
+    "data:vectors": "tsx scripts/prepare-vectors.ts",
+    "data:osm": "tsx scripts/prepare-osm.ts",
+    "data:all": "npm run data:terrain && npm run data:vectors && npm run data:osm",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "build:single": "tsc --noEmit && cross-env SINGLE=1 vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "d3-geo": "^3.1.1",
+    "three": "^0.169.0"
+  },
+  "devDependencies": {
+    "@types/d3-geo": "^3.1.0",
+    "@types/three": "^0.169.0",
+    "cross-env": "^10.1.0",
+    "pngjs": "^7.0.0",
+    "sharp": "^0.33.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vite-plugin-singlefile": "^2.3.3"
+  }
+}

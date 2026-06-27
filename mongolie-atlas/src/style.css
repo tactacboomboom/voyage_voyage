@@ -1,0 +1,100 @@
+:root{
+  --bg:#0e1320;
+  --panel:rgba(20,26,38,.86);
+  --panel-solid:#161c28;
+  --line:rgba(255,255,255,.10);
+  --ink:#eef2f7;
+  --muted:#9aa6b8;
+  --gold:#d8b15a;
+  --accent:#e0654a;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:var(--bg);color:var(--ink);
+  font-family:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif}
+#app{position:fixed;inset:0}
+canvas{display:block}
+
+.panel{position:absolute;background:var(--panel);backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+
+/* ---- En-tête ---- */
+#title{top:18px;left:18px;padding:14px 18px;max-width:300px}
+#title h1{margin:0;font-size:1.15rem;letter-spacing:.18em;font-weight:700}
+#title h1 .o{color:var(--gold)}
+#title p{margin:.35rem 0 0;font-size:.74rem;color:var(--muted);line-height:1.5}
+
+/* ---- Panneau gauche : couches & légende ---- */
+#layers{top:120px;left:18px;width:248px;padding:6px 6px 10px;max-height:calc(100vh - 150px);overflow:auto}
+.sec-title{font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);
+  padding:12px 12px 6px;font-weight:600}
+.row{display:flex;align-items:center;gap:10px;padding:6px 12px;cursor:pointer;border-radius:8px;font-size:.82rem}
+.row:hover{background:rgba(255,255,255,.05)}
+.row input{display:none}
+.row .box{width:15px;height:15px;border:1.5px solid var(--muted);border-radius:4px;flex:0 0 auto;
+  display:grid;place-items:center;transition:.15s}
+.row input:checked + .box{background:var(--gold);border-color:var(--gold)}
+.row input:checked + .box::after{content:"";width:7px;height:7px;border-radius:2px;background:#111}
+.row .sw{width:22px;height:0;flex:0 0 auto}
+.sw-asphalt{border-top:4px solid #2b2f3a}
+.sw-dirt{border-top:4px solid #c4863a}
+.sw-offroad{border-top:3px dotted #d2492a}
+.sw-rail{border-top:4px double #7a4fa3;height:5px}
+.sw-river{border-top:3px solid #4f8fb8}
+.sw-prov{border-top:2px dashed #8a7c63}
+.row .dot{width:12px;height:12px;border-radius:3px;flex:0 0 auto}
+.row .label{flex:1}
+.row .km{font-size:.7rem;color:var(--muted);font-variant-numeric:tabular-nums}
+
+.ethnote{font-size:.67rem;color:var(--muted);padding:2px 12px 8px;line-height:1.5}
+.ethnote b{color:#cdd5e2}
+.ethleg{display:flex;flex-wrap:wrap;gap:4px 9px;padding:0 12px 12px;font-size:.64rem;color:#cdd5e2}
+.ethleg span{display:flex;align-items:center;gap:4px}
+.ethleg i{width:9px;height:9px;border-radius:2px;display:inline-block;flex:0 0 auto}
+.elab{position:absolute;transform:translate(-50%,-50%);font-size:.72rem;font-weight:700;color:#fff;
+  white-space:nowrap;text-shadow:0 1px 3px #000,0 0 3px #000;pointer-events:none;
+  padding:1px 7px;border-radius:6px;background:rgba(18,20,30,.4);border-left:3px solid var(--c)}
+
+.slider{padding:10px 12px}
+.slider label{font-size:.72rem;color:var(--muted);display:flex;justify-content:space-between}
+.slider input{width:100%;margin-top:6px;accent-color:var(--gold)}
+
+/* ---- Panneau droit : info ---- */
+#info{top:18px;right:18px;width:300px;padding:0;overflow:hidden;display:none}
+#info .hd{padding:14px 16px 10px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+#info .hd h2{margin:0;font-size:1.02rem}
+#info .hd .meta{font-size:.72rem;color:var(--gold);margin-top:3px}
+#info .bd{padding:12px 16px 16px;font-size:.82rem;line-height:1.6;color:#dde3ec}
+#info .badge{display:inline-block;font-size:.66rem;padding:2px 8px;border-radius:999px;font-weight:700;margin-top:8px}
+#info .close{cursor:pointer;color:var(--muted);font-size:1.1rem;line-height:1}
+#info .close:hover{color:#fff}
+
+/* ---- Bas droit : contrôles & crédits ---- */
+#controls{bottom:18px;right:18px;padding:10px 14px;font-size:.72rem;color:var(--muted);max-width:280px}
+#controls b{color:var(--ink)}
+#controls .btn{margin-top:8px;display:inline-block;cursor:pointer;background:var(--gold);color:#1a1206;
+  padding:6px 12px;border-radius:8px;font-weight:700;font-size:.74rem}
+#controls .btn:hover{filter:brightness(1.08)}
+#credits{margin-top:8px;font-size:.62rem;opacity:.7;line-height:1.4}
+
+/* ---- Étiquettes flottantes ---- */
+#labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.lab{position:absolute;transform:translate(-50%,-130%);font-size:.7rem;color:#fff;white-space:nowrap;
+  text-shadow:0 1px 3px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.9);font-weight:600}
+.lab.cap{font-size:.82rem;color:#ffd9b0}
+.lab.peak{color:#cdeacd}
+.lab .e{color:var(--muted);font-weight:400}
+
+/* ---- Boussole ---- */
+#compass{top:18px;right:336px;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  font-size:.7rem;color:var(--muted)}
+#compass .n{color:var(--accent);font-weight:700}
+
+#loading{position:absolute;inset:0;display:grid;place-items:center;background:var(--bg);z-index:50;
+  font-size:.9rem;letter-spacing:.1em;color:var(--muted)}
+.spin{width:34px;height:34px;border:3px solid rgba(255,255,255,.15);border-top-color:var(--gold);
+  border-radius:50%;animation:sp 1s linear infinite;margin:0 auto 14px}
+@keyframes sp{to{transform:rotate(360deg)}}
+
+@media(max-width:760px){
+  #layers{width:210px} #info{width:240px} #compass{display:none}
+}

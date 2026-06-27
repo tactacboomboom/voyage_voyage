@@ -1,0 +1,15 @@
+{
+  "width": 720,
+  "height": 300,
+  "bbox": {
+    "lonMin": 87.5,
+    "lonMax": 120,
+    "latMin": 41.4,
+    "latMax": 52.3
+  },
+  "worldWidth": 200,
+  "worldHeight": 98.07848167236057,
+  "minEle": -156,
+  "maxEle": 4656,
+  "zoom": 7
+}
